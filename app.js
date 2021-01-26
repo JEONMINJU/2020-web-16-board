@@ -34,6 +34,7 @@ app.use('/board', boardRouter);
 app.use('/api', apiRouter);
 app.use('/gallery', galleryRouter);
 
+
 /************* Error **************/
 app.use((req, res, next) => {
 	next(err(404));
