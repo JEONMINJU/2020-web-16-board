@@ -14,8 +14,8 @@ app.listen(process.env.PORT, () => {
 });
 
 /************* View/pug **************/
-app.set('view engine', 'pug');
-app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug'); //view engine이라는 변수에 pug를 넣고
+app.set('views', path.join(__dirname, 'views'));//views라는 변수에 views를 집어 넣은거
 app.locals.pretty = true;
 
 /************* Post/Body **************/
@@ -31,7 +31,7 @@ const { Console } = require('console');
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use('/storages', express.static(path.join(__dirname, 'uploads')));
-app.use('/auth', authRouter);
+app.use('/auth', authRouter); // '/auth'로 들어온다면 authRouter로 보내기
 app.use('/board', boardRouter);
 app.use('/api', apiRouter);
 app.use('/gallery', galleryRouter);
@@ -43,5 +43,5 @@ app.use((req, res, next) => {
 });
 
 app.use((err, req, res, next) => {
-	res.render('error', err);
+	res.render('error', err); //뷰스 안에 있는 error를 보여주고 내가 전달받은 err를 보여달라.
 });

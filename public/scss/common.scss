@@ -38,52 +38,41 @@ a:not(.btn) {
 }
 
 header {
-	.top-wrapper {
-		font-size: $xs;
-		background-color: $colorDarker;
-		color: $colorWhite;
-		padding-right: 2em;
-		@include tablet {
-			padding-right: 0;
-		}
-		.wrapper {
-			@include flex($FE, $CT);
-			a	{
-				padding: 0.5em 1em;
-				@include tablet {
-					&:last-child {padding-right: 0;}
-				}
-			}
-		}
-	}
+	.top-wrapper {padding: $sm; background-color: $colorDarker;}
 	.header-wrapper {
 		border-bottom: 1px solid $colorWhite;
 		@include tablet {
 			padding: 0.5em 0;
 		}
 		.wrapper {
-			@include flex($SB, $CT);
-			.logo-wrapper {
-				a {
-					@include flex($FS, $CT);
-					.img-wrap {width: 50px; margin-right: 0.5em; border-radius: 50%; overflow: hidden; border: 1px solid $colorWhite;}
-					span {font-size: $xs; font-family: $open; font-weight: 500; color: $txtPrimary;}
-				}
-			}
-			.navi-wrapper {
-				display: flex;
+			display: flex;
+			@include flex($SB);
+			.navi-wrap {
+				@include flex($FS, $CT);
 				align-items: center;
 				.navi {
-					padding: 1.75em;
+					padding: 1.5em;
 					&:hover {background-color: $colorWhite; color: $txtPrimary;}
 				}
 				@include tablet {
 					display: none;
 				}
 			}
+			.logo-wrap {
+				a {
+					@include flex($CT);
+					.img-wrap {width: 50px; height: 50px; margin: 0.25em 0; border-radius: 50%; overflow: hidden; border: 1px solid $colorWhite; background-image: url(../img/jmju.jpg); background-size: cover; background-repeat: no-repeat;
+					}
+				}
+			}
+			.login-wrap {
+				@include flex($FE);
+				a { padding: 1.5em;}
+			}
 			.mobile-wrapper {
 				display: none;
 				font-size: 1.5em;
+				padding-top: 1em;
 				cursor: pointer;
 				@include tablet {
 					display: block;
@@ -95,14 +84,16 @@ header {
 		position: absolute;
 		width: 100%;
 		display: none;
-		.sub {
-			color: $colorWhite;
-			background-color: $colorDark;
-			padding: 1.5em;
-			border-bottom: 1px solid $colorGrey;
+			.sub {
+				color: $colorWhite;
+				background-color: $colorDark;
+				padding: 1.5em;
+				border-bottom: 1px solid $colorGrey;
+			}
 		}
-	}
 }
+
+
 
 .title-wrapper {
 	text-align: center;

@@ -63,32 +63,8 @@ a:not(.btn):link, a:not(.btn):visited, a:not(.btn):active, a:not(.btn):hover {
 }
 
 header .top-wrapper {
-  font-size: 0.75em;
+  padding: 0.875em;
   background-color: #333;
-  color: #f1f1f1;
-  padding-right: 2em;
-}
-
-@media screen and (max-width: 767px) {
-  header .top-wrapper {
-    padding-right: 0;
-  }
-}
-
-header .top-wrapper .wrapper {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
-header .top-wrapper .wrapper a {
-  padding: 0.5em 1em;
-}
-
-@media screen and (max-width: 767px) {
-  header .top-wrapper .wrapper a:last-child {
-    padding-right: 0;
-  }
 }
 
 header .header-wrapper {
@@ -103,54 +79,65 @@ header .header-wrapper {
 
 header .header-wrapper .wrapper {
   display: flex;
+  display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: stretch;
 }
 
-header .header-wrapper .wrapper .logo-wrapper a {
+header .header-wrapper .wrapper .navi-wrap {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-}
-
-header .header-wrapper .wrapper .logo-wrapper a .img-wrap {
-  width: 50px;
-  margin-right: 0.5em;
-  border-radius: 50%;
-  overflow: hidden;
-  border: 1px solid #f1f1f1;
-}
-
-header .header-wrapper .wrapper .logo-wrapper a span {
-  font-size: 0.75em;
-  font-family: "Open Sans", sans-serif;
-  font-weight: 500;
-  color: #0f203f;
-}
-
-header .header-wrapper .wrapper .navi-wrapper {
-  display: flex;
   align-items: center;
 }
 
-header .header-wrapper .wrapper .navi-wrapper .navi {
-  padding: 1.75em;
+header .header-wrapper .wrapper .navi-wrap .navi {
+  padding: 1.5em;
 }
 
-header .header-wrapper .wrapper .navi-wrapper .navi:hover {
+header .header-wrapper .wrapper .navi-wrap .navi:hover {
   background-color: #f1f1f1;
   color: #0f203f;
 }
 
 @media screen and (max-width: 767px) {
-  header .header-wrapper .wrapper .navi-wrapper {
+  header .header-wrapper .wrapper .navi-wrap {
     display: none;
   }
+}
+
+header .header-wrapper .wrapper .logo-wrap a {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+}
+
+header .header-wrapper .wrapper .logo-wrap a .img-wrap {
+  width: 50px;
+  height: 50px;
+  margin: 0.25em 0;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 1px solid #f1f1f1;
+  background-image: url(../img/jmju.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+header .header-wrapper .wrapper .login-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: stretch;
+}
+
+header .header-wrapper .wrapper .login-wrap a {
+  padding: 1.5em;
 }
 
 header .header-wrapper .wrapper .mobile-wrapper {
   display: none;
   font-size: 1.5em;
+  padding-top: 1em;
   cursor: pointer;
 }
 
