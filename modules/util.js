@@ -1,3 +1,5 @@
+const path = require('path');
+
 const err = (code, msg) => {
 	if(code == 404) {
 		return {
@@ -24,4 +26,16 @@ const err = (code, msg) => {
 	}
 }
 
-module.exports = { err }
+const alert = (msg) => {
+	return `<script>alert('${msg}'); history.go(-1);</script>`;
+}
+
+const extName = (filename) => {
+	return path.extname(filename).substr(1).toLowerCase();
+}
+
+const srcPath = (filename) => {
+	return `/storages/${filename.substr(0, 9)}/${filename}`;
+}
+
+module.exports = { err, alert, extName, srcPath }
