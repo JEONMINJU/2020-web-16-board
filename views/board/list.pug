@@ -23,5 +23,7 @@ block content
 						td= v.wdate
 						td= v.readnum
 		include ../include/pager
-		.text-center.py-3
-			a.btn.btn-dark(href="/board/create") 글쓰기
+		if user.id
+			.text-center.py-3
+				a.btn.btn-light.border(href="/board/create") 글쓰기
+			.border-bottom.py-3

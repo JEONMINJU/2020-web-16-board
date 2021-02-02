@@ -40,17 +40,16 @@ a:not(.btn) {
 header {
 	.top-wrapper {padding: $sm; background-color: $colorDarker;}
 	.header-wrapper {
-		border-bottom: 1px solid $colorWhite;
+		border-bottom: 1px solid $colorLighter;
 		@include tablet {
 			padding: 0.5em 0;
 		}
 		.wrapper {
-			display: flex;
 			@include flex($SB);
-			.navi-wrap {
+			.navi-l-wrap {
 				@include flex($FS, $CT);
 				align-items: center;
-				.navi {
+				a { 
 					padding: 1.5em;
 					&:hover {background-color: $colorWhite; color: $txtPrimary;}
 				}
@@ -58,16 +57,23 @@ header {
 					display: none;
 				}
 			}
-			.logo-wrap {
+			.logo-c-wrap {
 				a {
 					@include flex($CT);
-					.img-wrap {width: 50px; height: 50px; margin: 0.25em 0; border-radius: 50%; overflow: hidden; border: 1px solid $colorWhite; background-image: url(../img/jmju.jpg); background-size: cover; background-repeat: no-repeat;
+					.img-wrap {width: 50px; height: 50px; margin: 0.25em 0; border-radius: 50%; overflow: hidden; border: 1px solid $colorLighter; background-image: url(../img/jmju.jpg); background-size: cover; background-repeat: no-repeat;
+					}
+					@include tablet {
+						margin-left: 0.25em;
 					}
 				}
 			}
-			.login-wrap {
-				@include flex($FE);
-				a { padding: 1.5em;}
+			.navi-r-wrap {
+				@include flex($FE, $CT);
+				align-items: center;
+				a { 
+					padding: 1.5em;
+					&:hover {background-color: $colorWhite; color: $txtPrimary;}
+				}
 			}
 			.mobile-wrapper {
 				display: none;
@@ -76,24 +82,24 @@ header {
 				cursor: pointer;
 				@include tablet {
 					display: block;
+					margin-right: 0.25em;
 				}
 			}
 		}
 	}
 	.mobile-sub {
-		position: absolute;
-		width: 100%;
+		position: absolute; //포지션으로 떠오르면 width가 없어지기 때문에 
+		width: 100%; // width 100% 주기
 		display: none;
 			.sub {
 				color: $colorWhite;
-				background-color: $colorDark;
+				background-color: $colorDarker;
 				padding: 1.5em;
 				border-bottom: 1px solid $colorGrey;
+				&:hover {background-color: rgba(0,0,0,1.2);}
 			}
 		}
 }
-
-
 
 .title-wrapper {
 	text-align: center;

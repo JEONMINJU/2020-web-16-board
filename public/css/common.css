@@ -1,3 +1,11 @@
+@charset "UTF-8";
+/* @mixin 믹스인이름($매개변수 : 기본값) {
+		스타일;
+	}
+	((( Sass는 @mixin 대신 = ))))
+
+	@include 믹스인이름(인수); (Sass 에서는 +믹스인이름(인수) )
+*/
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap");
@@ -58,8 +66,8 @@ a:not(.btn):link, a:not(.btn):visited, a:not(.btn):active, a:not(.btn):hover {
 }
 
 .pagination .page-item.active .page-link {
-  background-color: #fc8739;
-  border-color: #fc8739;
+  background-color: #111111;
+  border-color: #111111;
 }
 
 header .top-wrapper {
@@ -68,7 +76,7 @@ header .top-wrapper {
 }
 
 header .header-wrapper {
-  border-bottom: 1px solid #f1f1f1;
+  border-bottom: 1px solid #eaeaea;
 }
 
 @media screen and (max-width: 767px) {
@@ -79,59 +87,70 @@ header .header-wrapper {
 
 header .header-wrapper .wrapper {
   display: flex;
-  display: flex;
   justify-content: space-between;
   align-items: stretch;
 }
 
-header .header-wrapper .wrapper .navi-wrap {
+header .header-wrapper .wrapper .navi-l-wrap {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   align-items: center;
 }
 
-header .header-wrapper .wrapper .navi-wrap .navi {
+header .header-wrapper .wrapper .navi-l-wrap a {
   padding: 1.5em;
 }
 
-header .header-wrapper .wrapper .navi-wrap .navi:hover {
+header .header-wrapper .wrapper .navi-l-wrap a:hover {
   background-color: #f1f1f1;
   color: #0f203f;
 }
 
 @media screen and (max-width: 767px) {
-  header .header-wrapper .wrapper .navi-wrap {
+  header .header-wrapper .wrapper .navi-l-wrap {
     display: none;
   }
 }
 
-header .header-wrapper .wrapper .logo-wrap a {
+header .header-wrapper .wrapper .logo-c-wrap a {
   display: flex;
   justify-content: center;
   align-items: stretch;
 }
 
-header .header-wrapper .wrapper .logo-wrap a .img-wrap {
+header .header-wrapper .wrapper .logo-c-wrap a .img-wrap {
   width: 50px;
   height: 50px;
   margin: 0.25em 0;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid #f1f1f1;
+  border: 1px solid #eaeaea;
   background-image: url(../img/jmju.jpg);
   background-size: cover;
   background-repeat: no-repeat;
 }
 
-header .header-wrapper .wrapper .login-wrap {
-  display: flex;
-  justify-content: flex-end;
-  align-items: stretch;
+@media screen and (max-width: 767px) {
+  header .header-wrapper .wrapper .logo-c-wrap a {
+    margin-left: 0.25em;
+  }
 }
 
-header .header-wrapper .wrapper .login-wrap a {
+header .header-wrapper .wrapper .navi-r-wrap {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  align-items: center;
+}
+
+header .header-wrapper .wrapper .navi-r-wrap a {
   padding: 1.5em;
+}
+
+header .header-wrapper .wrapper .navi-r-wrap a:hover {
+  background-color: #f1f1f1;
+  color: #0f203f;
 }
 
 header .header-wrapper .wrapper .mobile-wrapper {
@@ -144,6 +163,7 @@ header .header-wrapper .wrapper .mobile-wrapper {
 @media screen and (max-width: 767px) {
   header .header-wrapper .wrapper .mobile-wrapper {
     display: block;
+    margin-right: 0.25em;
   }
 }
 
@@ -155,9 +175,13 @@ header .mobile-sub {
 
 header .mobile-sub .sub {
   color: #f1f1f1;
-  background-color: #555;
+  background-color: #333;
   padding: 1.5em;
   border-bottom: 1px solid #999;
+}
+
+header .mobile-sub .sub:hover {
+  background-color: black;
 }
 
 .title-wrapper {

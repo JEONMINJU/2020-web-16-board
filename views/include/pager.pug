@@ -14,11 +14,11 @@ ul.pager-wrapper.pagination.justify-content-center
 		li.page-item.disabled
 			a.page-link.fa.fa-angle-double-left
 	if pager.prevPage
-		li.page-item.mr-3
+		li.page-item.mr-4
 			a.page-link(href=`/board?page=${pager.prevPage}`)
 				i.fa.fa-angle-left
 	else
-		li.page-item.disabled.mr-3
+		li.page-item.disabled.mr-4
 			a.page-link.fa.fa-angle-left
 	- for(let i=pager.startPage; i<=pager.endPage; i++)
 		if i == pager.page
@@ -28,11 +28,11 @@ ul.pager-wrapper.pagination.justify-content-center
 			li.page-item
 				a.page-link(href=`/board?page=${i}`)= i
 	if pager.nextPage
-		li.page-item.ml-3
+		li.page-item.ml-4
 			a.page-link(href=`/board?page=${pager.nextPage}`)
 				i.fa.fa-angle-right
 	else
-		li.page-item.disabled.ml-3
+		li.page-item.disabled.ml-4
 			a.page-link.fa.fa-angle-right
 	if pager.nextPager		
 		li.page-item

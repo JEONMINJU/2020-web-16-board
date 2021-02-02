@@ -2,9 +2,10 @@
 	.table.tb-list {
 		thead {
 			th {
-				color: $tbHeadTxt;
+				color: $txtDark;
 				background-color: $tbHeadBg;
-				border-color: $tbHeadBorder;
+				border-color: $tbHeadTxt;
+				border-bottom: 1px solid $tbHeadTxt;
 				&:nth-child(1) {width: 8%; min-width: 80px;}
 				&:nth-child(3) {width: 15%; min-width: 120px;}
 				&:nth-child(4) {width: 5%; min-width: 50px;}
@@ -19,12 +20,17 @@
 		}
 		tbody {
 			tr {
-				&:nth-of-type(odd) {
+				&:nth-of-type(odd) { //odd 는 홀수만!
 					background-color: rgba(0,0,0,.015);
+				}
+				&:first-child {
+					td {
+						border-top: none;
+					}
 				}
 				&:last-child {
 					td {
-						border-bottom: 1px solid #dee2e6;
+						border-bottom: 1px solid $tbHeadTxt;
 					}
 				}
 				td {

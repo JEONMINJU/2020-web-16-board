@@ -1,49 +1,35 @@
-function onLogon(f) {
-	if(f.userid.value.trim() == "") {
-		f.userid.focus();
-		return false;
-	}
-	if(f.userpw.value.trim() == "") {
-		f.userpw.focus();
-		return false;
-	}
-	return true; // 로그인페이지에서 id, pw 둘다 입력돼야 전송!!
-}
-
-
 function comment(el, cmt, cls) {
 	$(el).next().html(cmt);
 	$(el).next().removeClass('active danger');
 	$(el).next().addClass(cls);
 }
-//전역변수 선언 해놓기
-var idChk = false; 
-var passChk = false;
-var nameChk = false;
-var emailChk = false;
-function onBlurId(el) {
-	function onResponse(r) {
-		if(r.result) {
-			comment(el, '멋진 아이디입니다! 사용가능합니다.', 'active');//통신을 해서 나온 결과값
-			idChk = true;
-			return true;
-		}
-		else {
-			comment(el, '존재하는 아이디입니다. 사용할 수 없습니다.', 'danger');
-			idChk = false;
-			return false;
-		}
-	}
-	var userid = $(el).val().trim();	// el.value
-	if(userid.length < 8) {
-		comment(el, '아이디는 8자 이상입니다.', 'danger');
-		idChk = false;
-		return false;
-	}
-	else {
-		$.get('/auth/userid', { userid: userid }, onResponse);
-	}
+
+function onJoin() {
+	onBlurId();
+	onBlurPass();
 }
+
+function onBlurId(userid) {
+	
+	// jQuery
+	/* $.get('/auth/userid?userid='+el.value, function(r) {
+		console.log(r);
+	}); */
+	
+	// Javascript - Vanilla Script
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange = function() {
+	if (xhr.readyState === xhr.DONE) {
+			if (xhr.status === 200 || xhr.status === 201) {
+				return JSON.parse(xhr.responseText).result;
+			}
+		}
+	};
+	xhr.open('GET', '/auth/userid?userid='+userid);
+	xhr.send();
+}
+
+console.log(onBlurId('booldook', fn));
 
 function onBlurPw(el) {
 	var pw = $(el).val().trim();
@@ -62,16 +48,16 @@ function onBlurPw(el) {
 		return false;
 	}
 	comment(el, '비밀번호를 사용할 수 있습니다.', 'active');
-	passChk = true; //위에꺼 다 통과하면 여기서 트루 
+	passChk = true;
 	return true;
 }
 
 function onBlurPw2(el) {
-	var f = document.joinForm;//join.pug에 있는 joinForm
+	var f = document.joinForm;
 	if(f.userpw.value.trim() !== f.userpw2.value.trim()) {
 		comment(el, '비밀번호가 일치하지 않습니다.', 'danger');
 		passChk = false;
-		return false;// 보내면 안되니깐.
+		return false;
 	}
 	comment(el, '비밀번호를 사용할 수 있습니다.', 'active');
 	passChk = true;
@@ -91,7 +77,7 @@ function onBlurName(el) {
 
 function onBlurEmail(el) {
 	var emailVal = $(el).val().trim();
-	var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i; //이메일 정규표현식
+	var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 	if(emailVal.match(regExp) == null) {
 		comment(el, '올바른 이메일이 아닙니다.', 'danger');
 		emailChk = false;
@@ -101,9 +87,9 @@ function onBlurEmail(el) {
 	emailChk = true;
 	return true;
 }
-// 마지막 검증은 join.pug의 input안의 submit 에서 제출
+
 function onJoin(f) {
-	if(!idChk) {//idChk가 트루가 아니라면
+	if(!idChk) {
 		alert('아이디를 확인하세요.');
 		f.userid.focus();
 		return false;
@@ -123,5 +109,5 @@ function onJoin(f) {
 		f.email.focus();
 		return false;
 	}
-	return true;// 위의 모든 검증을 끝내고 나면 true
+	return true;
 }

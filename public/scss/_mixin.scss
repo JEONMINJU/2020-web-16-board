@@ -1,5 +1,13 @@
 @import './variables';
 
+/* @mixin 믹스인이름($매개변수 : 기본값) {
+		스타일;
+	}
+	((( Sass는 @mixin 대신 = ))))
+
+	@include 믹스인이름(인수); (Sass 에서는 +믹스인이름(인수) )
+*/
+
 @mixin layer($position, $top, $right, $bottom, $left) {
 	position: $position;
 	top: $top;
