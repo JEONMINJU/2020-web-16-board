@@ -7,23 +7,41 @@ function onModalClose() {
 	$(".modal-wrapper").removeClass('active');
 }
 
-// form을 받아서 f.title에 value를 트리밍한 것이 빈값이라면
 function onSave(f) {
 	if(f.title.value.trim() == "") {
-		alert('제목을 입력하세요.'); // 경고창을 띄워주고
-		f.title.focus(); // 폼안에 포커스 주고
-		return false; // 전송하면 안되니깐 리턴 폴스
+		alert('제목을 입력하세요.');
+		f.title.focus();
+		return false;
 	}
-	return true; // 입력된 게 있다면 트루로 전송해라.
+	return true;
 }
 
 function onMobile() {
 	$('.mobile-sub').stop().slideToggle(300);
 }
 
+$(window).resize(onResize);
 function onResize(e) {
-	if($(this).width() > 767) { //$(this)는 window
+	if($(this).width() > 767) {
 		$('.mobile-sub').stop().slideUp(0);
 	}
 }
-$(window).resize(onResize);
+
+function onRev(id) {
+	if(confirm("정말로 삭제하시겠습니까?")) {
+		location.href = '/board/remove/'+id;
+	}
+}
+
+function onApiRemove(id) {
+	if(confirm("첨부파일을 삭제하면 저장여부와 상관없이 즉시 삭제됩니다.")) {
+		$.get('/board/api/remove/'+id, function(r) {
+			if(r.code == 200) {
+				$('.file-wrap .legacy').remove();
+			}
+			else {
+				alert(r.error);
+			}
+		});
+	}
+}

@@ -38,67 +38,70 @@ a:not(.btn) {
 }
 
 header {
-	.top-wrapper {padding: $sm; background-color: $colorDarker;}
+	.top-wrapper {
+		font-size: $xs;
+		background-color: $colorDarker;
+		color: $colorWhite;
+		padding-right: 2em;
+		@include tablet {
+			padding-right: 0;
+		}
+		.wrapper {
+			@include flex($FE, $CT);
+			a	{
+				padding: 0.5em 1em;
+				@include tablet {
+					&:last-child {padding-right: 0;}
+				}
+			}
+		}
+	}
 	.header-wrapper {
-		border-bottom: 1px solid $colorLighter;
+		border-bottom: 1px solid $colorWhite;
 		@include tablet {
 			padding: 0.5em 0;
 		}
 		.wrapper {
-			@include flex($SB);
-			.navi-l-wrap {
-				@include flex($FS, $CT);
+			@include flex($SB, $CT);
+			.logo-wrapper {
+				a {
+					@include flex($FS, $CT);
+					.img-wrap {width: 50px; margin-right: 0.5em; border-radius: 50%; overflow: hidden; border: 1px solid $colorWhite;}
+					span {font-size: $xs; font-family: $open; font-weight: 500; color: $txtPrimary;}
+				}
+			}
+			.navi-wrapper {
+				display: flex;
 				align-items: center;
-				a { 
-					padding: 1.5em;
+				.navi {
+					padding: 1.75em;
 					&:hover {background-color: $colorWhite; color: $txtPrimary;}
 				}
 				@include tablet {
 					display: none;
 				}
 			}
-			.logo-c-wrap {
-				a {
-					@include flex($CT);
-					.img-wrap {width: 50px; height: 50px; margin: 0.25em 0; border-radius: 50%; overflow: hidden; border: 1px solid $colorLighter; background-image: url(../img/jmju.jpg); background-size: cover; background-repeat: no-repeat;
-					}
-					@include tablet {
-						margin-left: 0.25em;
-					}
-				}
-			}
-			.navi-r-wrap {
-				@include flex($FE, $CT);
-				align-items: center;
-				a { 
-					padding: 1.5em;
-					&:hover {background-color: $colorWhite; color: $txtPrimary;}
-				}
-			}
 			.mobile-wrapper {
 				display: none;
 				font-size: 1.5em;
-				padding-top: 1em;
 				cursor: pointer;
 				@include tablet {
 					display: block;
-					margin-right: 0.25em;
 				}
 			}
 		}
 	}
 	.mobile-sub {
-		position: absolute; //포지션으로 떠오르면 width가 없어지기 때문에 
-		width: 100%; // width 100% 주기
+		position: absolute;
+		width: 100%;
 		display: none;
-			.sub {
-				color: $colorWhite;
-				background-color: $colorDarker;
-				padding: 1.5em;
-				border-bottom: 1px solid $colorGrey;
-				&:hover {background-color: rgba(0,0,0,1.2);}
-			}
+		.sub {
+			color: $colorWhite;
+			background-color: $colorDark;
+			padding: 1.5em;
+			border-bottom: 1px solid $colorGrey;
 		}
+	}
 }
 
 .title-wrapper {

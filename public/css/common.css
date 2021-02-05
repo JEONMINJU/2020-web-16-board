@@ -1,11 +1,3 @@
-@charset "UTF-8";
-/* @mixin 믹스인이름($매개변수 : 기본값) {
-		스타일;
-	}
-	((( Sass는 @mixin 대신 = ))))
-
-	@include 믹스인이름(인수); (Sass 에서는 +믹스인이름(인수) )
-*/
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Sunflower:wght@300;500&display=swap");
@@ -66,17 +58,41 @@ a:not(.btn):link, a:not(.btn):visited, a:not(.btn):active, a:not(.btn):hover {
 }
 
 .pagination .page-item.active .page-link {
-  background-color: #111111;
-  border-color: #111111;
+  background-color: #fc8739;
+  border-color: #fc8739;
 }
 
 header .top-wrapper {
-  padding: 0.875em;
+  font-size: 0.75em;
   background-color: #333;
+  color: #f1f1f1;
+  padding-right: 2em;
+}
+
+@media screen and (max-width: 767px) {
+  header .top-wrapper {
+    padding-right: 0;
+  }
+}
+
+header .top-wrapper .wrapper {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+header .top-wrapper .wrapper a {
+  padding: 0.5em 1em;
+}
+
+@media screen and (max-width: 767px) {
+  header .top-wrapper .wrapper a:last-child {
+    padding-right: 0;
+  }
 }
 
 header .header-wrapper {
-  border-bottom: 1px solid #eaeaea;
+  border-bottom: 1px solid #f1f1f1;
 }
 
 @media screen and (max-width: 767px) {
@@ -88,82 +104,59 @@ header .header-wrapper {
 header .header-wrapper .wrapper {
   display: flex;
   justify-content: space-between;
-  align-items: stretch;
+  align-items: center;
 }
 
-header .header-wrapper .wrapper .navi-l-wrap {
+header .header-wrapper .wrapper .logo-wrapper a {
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  align-items: center;
 }
 
-header .header-wrapper .wrapper .navi-l-wrap a {
-  padding: 1.5em;
-}
-
-header .header-wrapper .wrapper .navi-l-wrap a:hover {
-  background-color: #f1f1f1;
-  color: #0f203f;
-}
-
-@media screen and (max-width: 767px) {
-  header .header-wrapper .wrapper .navi-l-wrap {
-    display: none;
-  }
-}
-
-header .header-wrapper .wrapper .logo-c-wrap a {
-  display: flex;
-  justify-content: center;
-  align-items: stretch;
-}
-
-header .header-wrapper .wrapper .logo-c-wrap a .img-wrap {
+header .header-wrapper .wrapper .logo-wrapper a .img-wrap {
   width: 50px;
-  height: 50px;
-  margin: 0.25em 0;
+  margin-right: 0.5em;
   border-radius: 50%;
   overflow: hidden;
-  border: 1px solid #eaeaea;
-  background-image: url(../img/jmju.jpg);
-  background-size: cover;
-  background-repeat: no-repeat;
+  border: 1px solid #f1f1f1;
+}
+
+header .header-wrapper .wrapper .logo-wrapper a span {
+  font-size: 0.75em;
+  font-family: "Open Sans", sans-serif;
+  font-weight: 500;
+  color: #0f203f;
+}
+
+header .header-wrapper .wrapper .navi-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+header .header-wrapper .wrapper .navi-wrapper .navi {
+  padding: 1.75em;
+}
+
+header .header-wrapper .wrapper .navi-wrapper .navi:hover {
+  background-color: #f1f1f1;
+  color: #0f203f;
 }
 
 @media screen and (max-width: 767px) {
-  header .header-wrapper .wrapper .logo-c-wrap a {
-    margin-left: 0.25em;
+  header .header-wrapper .wrapper .navi-wrapper {
+    display: none;
   }
-}
-
-header .header-wrapper .wrapper .navi-r-wrap {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  align-items: center;
-}
-
-header .header-wrapper .wrapper .navi-r-wrap a {
-  padding: 1.5em;
-}
-
-header .header-wrapper .wrapper .navi-r-wrap a:hover {
-  background-color: #f1f1f1;
-  color: #0f203f;
 }
 
 header .header-wrapper .wrapper .mobile-wrapper {
   display: none;
   font-size: 1.5em;
-  padding-top: 1em;
   cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {
   header .header-wrapper .wrapper .mobile-wrapper {
     display: block;
-    margin-right: 0.25em;
   }
 }
 
@@ -175,13 +168,9 @@ header .mobile-sub {
 
 header .mobile-sub .sub {
   color: #f1f1f1;
-  background-color: #333;
+  background-color: #555;
   padding: 1.5em;
   border-bottom: 1px solid #999;
-}
-
-header .mobile-sub .sub:hover {
-  background-color: black;
 }
 
 .title-wrapper {

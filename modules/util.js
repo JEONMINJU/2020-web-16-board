@@ -26,10 +26,10 @@ const err = (code, msg) => {
 	}
 }
 
-const alert = (msg, loc) => { // 메세지를 받아서
+const alert = (msg, loc) => {
 	if(loc) return `<script>alert('${msg}'); location.href="${loc}";</script>`;
 	else return `<script>alert('${msg}'); history.go(-1);</script>`;
-} //history.go(-1) 지금까지 거쳐왔던 경로 하나 뒤로 가라
+}
 
 const extName = (filename) => {
 	return path.extname(filename).substr(1).toLowerCase();
@@ -39,4 +39,8 @@ const srcPath = (filename) => {
 	return `/storages/${filename.substr(0, 9)}/${filename}`;
 }
 
-module.exports = { err, alert, extName, srcPath }
+const realPath = (filename) => {
+	return path.join(__dirname, '../uploads', filename.substr(0, 9), filename);
+}
+
+module.exports = { err, alert, extName, srcPath, realPath }

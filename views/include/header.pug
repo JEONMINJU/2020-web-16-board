@@ -1,21 +1,22 @@
 header
-	//--.top-wrapper
+	.top-wrapper
+		.wrapper
+			if user.id
+				a(href="/auth/logout") LOGOUT
+			else
+				a(href="/auth/join") JOIN
+				a(href="/auth/login") LOGIN
 	.header-wrapper
 		.wrapper
-			.navi-l-wrap
-				a(href="/board") BOARD
-				a(href="/api") API BOARD
-				a(href="/gallery") GALLERY
-			h1.logo-c-wrap
+			h1.logo-wrapper
 				a(href="/") 
-					.img-wrap.mr-2
-						//--img.w-100(src="/img/jmju.jpg")
-			.navi-r-wrap
-				if user.id
-					a(href="/auth/logout") LOGOUT
-				else	
-					a.mr-2(href="/auth/join") JOIN
-					a.mr-2(href="/auth/login") LOGIN
+					.img-wrap
+						img.w-100(src="/img/booldook.png")
+					span BOOLDOOK
+			.navi-wrapper
+				a.navi(href="/board") BOARD
+				a.navi(href="/api") API BOARD
+				a.navi(href="/gallery") GALLERY
 			.mobile-wrapper
 				i.fa.fa-bars.navi(onclick="onMobile();")
 	ul.mobile-sub

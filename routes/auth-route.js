@@ -18,12 +18,12 @@ router.get('/logout', isUser, (req, res, next) => {
 	res.redirect('/');
 });
 
-router.post('/logon', async (req, res, next) => {
+router.post('/logon', isGuest, async (req, res, next) => {
 	let msg = '아이디 혹은 패스워드를 확인하세요.';
 	let sql, value, r, rs, compare;
 	let { userid, userpw } = req.body;
 	// SELECT userpw FROM auth WHERE userid='booldook';
-	sql = 'SELECT userpw FROM auth WHERE userid=?';
+	sql = 'SELECT * FROM auth WHERE userid=?';
 	value = [userid];
 	r = await pool.query(sql, value);
 	if(r[0].length == 1) {
@@ -38,6 +38,8 @@ router.post('/logon', async (req, res, next) => {
 				username: rs.username,
 				email: rs.email,
 			}
+			console.log(req.session.user);
+
 			res.redirect('/');
 		}
 		else {
@@ -59,15 +61,15 @@ router.get('/login', isGuest, (req, res, next) => {
 
 router.post('/save', isGuest, async (req, res, next) => {
 	try {
-		let { userid, userpw, username, email } = req.body;//검증을 통해 들어온 데이터
+		let { userid, userpw, username, email } = req.body;
 		let sql, value, r, rs;
 		let len = userpw.length;
 		let num = userpw.search(/[0-9]/g);
 		let eng = userpw.search(/[a-z]/ig);
 		let spe = userpw.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
-		let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;//이메일 검증(정규표현식)
+		let regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 		sql = 'SELECT userid FROM auth WHERE userid=?';
-		value = [userid];//내가 전달받은 userid 넣기
+		value = [userid];
 		r = await pool.query(sql, value);
 		rs = r[0];
 		if(rs.length > 0) next(err('아이디 중복 오류'));
@@ -94,7 +96,7 @@ router.get('/join', isGuest, (req, res, next) => {
 	res.render('auth/join', { ...pug });
 });
 
-/*********** API ***********/ //user.id 찾아오는거
+/*********** API ***********/
 router.get('/userid', isGuest, async (req, res, next) => {
 	try {
 		let sql, value, r, rs;

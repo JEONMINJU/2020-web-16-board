@@ -7,16 +7,18 @@ $colorLight: #bcbcbc;
 $colorLighter: #eaeaea;
 $colorWhite: #f1f1f1;
 
+$colorGreen: #2d7218;
+
 $txtPrimary: #0f203f;
 $txtAccent: #1a5aad;
 $txtLight: #f8f8f8;
 $txtDark: #131313;
 
-$tbHeadBg: #ffffff;
+$tbHeadBg: #faf1e8;
 $tbHeadTxt: #2c3238;
 $tbHeadBorder: #dee2e6;
 
-$pagerActive: #111111;
+$pagerActive: #fc8739;
 
 
 // 반응형
@@ -44,4 +46,5 @@ $FE: flex-end;
 $SB: space-between; 
 $SA: space-around; 
 $SE: space-evenly;
-$ST: stretch;
+$ST: stretch; 
+$BL: baseline;

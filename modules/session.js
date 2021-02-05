@@ -16,6 +16,3 @@ module.exports = () => {
 		store: new MySQLStore(option)
 	});
 }
-
-// app.js
-// app.use(session({}))
