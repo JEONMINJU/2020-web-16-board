@@ -1,28 +1,57 @@
 extends ../layout/layout-default
+block css 
+	link(rel="stylesheet" href="/css/swiper-bundle.min.css")
+block js 
+	script(src="/js/imagesloaded.pkgd.min.js")
+	script(src="/js/masonry.pkgd.min.js")
+	script(src="/js/swiper-bundle.min.js")
 block content
-	.list-wrapper.wrapper
-		table.tb-list.table.table-striped.text-center
-			thead.thead-light
-				tr
-					th 번호
-					th 제목
-					th 작성자
-					th 파일
-					th 작성일
-					th 조회수
-			tbody
-				each v in rs
-					tr
-						td= v.id
-						td.text-left
-							a(href=`/board/view/${v.id}`)= v.title
-						td= v.writer
-						td
-							if v.icon
-								img.icon(src=`${v.icon}` alt="icon")
-						td= v.wdate
-						td= v.readnum
+	.list-wrapper.wrapper 
+		ul.grid
+			li.grid-sizer
+			each v in rs
+				li.grid-item(onclick=`onModalShow(this, event, ${v.id})`)
+					.grid-inside
+						if v.src[1]
+							img.w-100.ani(src=`${v.src[0]}` alt="img")
+						else 
+							img.w-100(src=`${v.src[0]}` alt="img")
+						if v.src[1]
+							img.w-100.ani(src=`${v.src[1]}` alt="img")
+					.grid-info(onclick="event.stopPropagation();")
+						i.fa.fa-edit(onclick=`onEdit(this, event, ${v.id})`) 
+						i.fa.fa-trash-alt(onclick=`onDelete(this, event, ${v.id})`) 
+						i.fa.fa-ellipsis-h(onclick=`onModalShow(this, event, ${v.id})`) 
 		include ../include/pager
 		if user.id
 			.text-center.py-3
-				a.btn.btn-success(href="/board/create") 글쓰기
+				a.btn.btn-success(href="/gallery/create") 글쓰기
+	.modal-wrapper(onclick="onModalHide()" style="display: none;")
+		.loader.fa.fa-spinner.fa-spin
+		.bt-close.bt-red
+			i.fa.fa-times
+		.info-wrapper(onclick="event.stopPropagation()")
+			.bt-hide.bt-red(onclick="onInfoHide()")
+				i.fa.fa-arrow-left
+			ul.lists 
+				li.list
+					.title 제목
+					.content
+				li.list
+					.title 작성자
+					.content
+				li.list
+					.title 작성일
+					.content
+				li.list
+					.title 내용
+					.content
+		.modal-wrap(onclick="event.stopPropagation()")
+			.swiper-container 
+				.swiper-wrapper 
+			.bts 
+				.bt 
+					i.fa.fa-info-circle(onclick="onInfoShow();")
+				.bt 
+					i.fa.fa-download(onclick="onDownload();")
+			.swiper-pagination

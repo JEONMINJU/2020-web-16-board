@@ -1,0 +1,174 @@
+.list-wrapper {
+	.grid-item {
+		border: 1px solid $colorLighter;
+		border-radius: 4px;
+		cursor: pointer;
+		overflow: hidden;
+		.grid-inside {
+			@include flex($FS, $FS);
+			overflow: hidden;
+			img {
+				transition: all 0.5s;
+			}
+		}
+		.grid-info {
+			padding: 1em;
+			background-color: rgba(0, 4, 14, 0.8);
+			color: $colorLighter;
+			@include layer(absolute, auto, 0, 0, 0);
+			@include flex($CT, $CT);
+			transform: translateY(3.5em);
+			transition: all 0.35s;
+			transition-delay: 0.25s;
+			.fa {
+				margin: 0 .5em;
+			}
+		}
+		&:hover {
+			.grid-info {
+				transform: translateY(0);
+			}
+			img.ani {
+				transform: translateX(-100%);
+			}
+		}
+	}
+	.grid-item,
+	.grid-sizer {
+		width: 18%;
+		padding: 1%;
+		margin: 1%;
+		@include desktop {
+			width: 22.5%;
+			padding: 1.25%;
+			margin: 1.25%;
+		}
+		@include laptop {
+			width: 30.3333%;
+			padding: 1.5%;
+			margin: 1.5%;
+		}
+		@include tablet {
+			width: 46.5%;
+			padding: 1.75%;
+			margin: 1.75%;
+		}
+		@include mobile {
+			width: 96%;
+			padding: 2%;
+			margin: 2%;
+		}
+	}
+}
+
+.modal-wrapper {
+	@include layer(fixed, 0, 0, 0, 0);
+	@include flex($CT, $CT);
+	overflow: hidden;
+	z-index: 9999;
+	background-color: rgba(0, 4, 14, 0.8);
+	transition: all 0.35s;
+	opacity: 0;
+	&.active {
+		opacity: 1;
+	}
+	.loader {
+		@include center(9);
+		color: $colorLighter;
+		font-size: 3em;
+	}
+	.bt-red {
+		width: 40px;
+		height: 40px;
+		background-color: $colorRed;
+		color: #fff;
+		text-align: center;
+		line-height: 40px;
+		font-size: $lg;
+		cursor: pointer;
+		@include layer(absolute, 0, 0, auto, auto);
+	}
+	.info-wrapper {
+		transition: all 0.35s;
+		transform: translateX(calc(-100% - 30px));
+		background-color: #fff;
+		width: 30%;
+		height: 100vh;
+		overflow-y: auto;
+		min-width: 300px;
+		@include layer(absolute, 0, auto, 0, 0);
+		@include shadow(12px, 0, 12px, 0.5);
+		z-index: 9999;
+		padding: 0 1.5em;
+		&.active {
+			transform: translateX(0);
+		}
+		.lists {
+			margin-top: 80px;
+			.list {
+				margin-bottom: 1.5em;
+				border-bottom: 1px solid $colorLighter;
+				.title {
+					font-size: $xl;
+					color: $colorDark;
+					padding-left: 0.5em;
+					border-left: 3px solid $colorGreen;
+				}
+				.content {
+					font-size: $lg;
+					color: $colorGrey;
+					padding: 1em 0 1em 1em;
+				}
+			}
+		}
+	}
+	.modal-wrap {
+		opacity: 0;
+		transition: all 0.35s;
+		width: auto;
+		max-width: 70%;
+		&.active {
+			opacity: 1;
+		}
+		.swiper-container {
+			padding-bottom: 1em;
+			.swiper-wrapper {
+				.swiper-slide {
+					@include flex($CT, $CT);
+					text-align: center;
+					height: 60vh;
+					overflow: hidden;
+				}
+			}
+		}
+		.bts {
+			@include flex($CT, $CT);
+			color: $colorLight;
+			font-size: $xl;
+			.fa {
+				margin: 0 0.25em;
+				cursor: pointer;
+				transition: color 0.3s;
+				&:hover {
+					color: $pagerActive;
+				}
+			}
+		}
+		.swiper-pagination {
+			margin-top: 2em;
+			position: static;
+			text-align: center;
+			.swiper-pagination-bullet {
+				width: 12px;
+				height: 12px;
+				background: #fff;
+				opacity: .3;
+				margin: 3px;
+			}
+			.swiper-pagination-bullet-active {
+				opacity: 1;
+				background: $colorRed;
+			}
+		}
+	}
+}

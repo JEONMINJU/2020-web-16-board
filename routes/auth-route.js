@@ -38,8 +38,6 @@ router.post('/logon', isGuest, async (req, res, next) => {
 				username: rs.username,
 				email: rs.email,
 			}
-			console.log(req.session.user);
-
 			res.redirect('/');
 		}
 		else {
