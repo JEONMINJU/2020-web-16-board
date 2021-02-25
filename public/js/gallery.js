@@ -1,3 +1,4 @@
+
 var swiperIdx = 0;
 var swiperSrc;
 var swiper;
@@ -74,7 +75,27 @@ function onSave(f) {
 		alert("첨부파일은 1개 이상 등록하셔야 합니다.");
 		return false;
 	}
+	if($(f).attr('name') == 'changeForm') {
+		addFile(f);
+	}
 	return true;
+}
+
+function addFile(f) {
+	var delfile = [];
+	if(f.upfile.length) {
+		for(var i=0; i<f.upfile.length; i++) {
+			if(f.upfile[i].files.length == 1) {
+				delfile.push({name: f.upfile[i].files[0].name, id: f.upfile[i].dataset.id})
+			}
+		}
+	}
+	else {
+		if(f.upfile.files.length == 1) {
+			delfile.push({name: f.upfile[i].files[0].name, id: f.upfile[i].dataset.id})
+		}
+	}
+	f.delfile.value = JSON.stringify(delfile);
 }
 
 function fileValid(f) {
