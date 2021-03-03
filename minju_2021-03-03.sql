@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 8.0.23)
 # Database: minju
-# Generation Time: 2021-03-03 09:06:59 +0000
+# Generation Time: 2021-03-03 09:35:20 +0000
 # ************************************************************
 
 
@@ -29,13 +29,13 @@ DROP TABLE IF EXISTS `auth`;
 CREATE TABLE `auth` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `userid` varchar(50) NOT NULL,
-  `userpw` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  `userpw` varchar(255) CHARACTER SET utf8mb4  NOT NULL DEFAULT '',
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `grade` tinyint unsigned NOT NULL DEFAULT '1',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 
 
@@ -46,18 +46,18 @@ DROP TABLE IF EXISTS `board`;
 
 CREATE TABLE `board` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  `title` varchar(255) CHARACTER SET utf8mb4  NOT NULL DEFAULT '',
   `content` text,
-  `writer` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `writer` varchar(255) CHARACTER SET utf8mb4  DEFAULT NULL,
   `created` datetime DEFAULT CURRENT_TIMESTAMP,
-  `orifile` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
-  `savefile` varchar(255) CHARACTER SET utf8mb4 DEFAULT NULL,
+  `orifile` varchar(255) CHARACTER SET utf8mb4  DEFAULT NULL,
+  `savefile` varchar(255) CHARACTER SET utf8mb4  DEFAULT NULL,
   `readnum` int unsigned DEFAULT '0',
   `uid` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`),
   CONSTRAINT `board_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `auth` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 
 
@@ -68,13 +68,13 @@ DROP TABLE IF EXISTS `board_ip`;
 
 CREATE TABLE `board_ip` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `ip` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  `ip` varchar(50) CHARACTER SET utf8mb4  NOT NULL DEFAULT '',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `bid` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `bid` (`bid`),
   CONSTRAINT `board_ip_ibfk_1` FOREIGN KEY (`bid`) REFERENCES `board` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 
 
@@ -85,11 +85,11 @@ DROP TABLE IF EXISTS `books`;
 
 CREATE TABLE `books` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '번호',
-  `name` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '책제목',
-  `writer` varchar(255) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '저자',
+  `name` varchar(255) CHARACTER SET utf8mb4  NOT NULL DEFAULT '' COMMENT '책제목',
+  `writer` varchar(255) CHARACTER SET utf8mb4  DEFAULT '' COMMENT '저자',
   `wdate` datetime DEFAULT NULL COMMENT '등록일',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 
 
@@ -100,15 +100,15 @@ DROP TABLE IF EXISTS `city`;
 
 CREATE TABLE `city` (
   `id` int NOT NULL AUTO_INCREMENT COMMENT '순번',
-  `name` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '' COMMENT '도시명',
-  `country` varchar(255) CHARACTER SET utf8mb4 DEFAULT '' COMMENT '국가명',
-  `summary` text CHARACTER SET utf8mb4 COMMENT '도시설명',
+  `name` varchar(255) CHARACTER SET utf8mb4  NOT NULL DEFAULT '' COMMENT '도시명',
+  `country` varchar(255) CHARACTER SET utf8mb4  DEFAULT '' COMMENT '국가명',
+  `summary` text CHARACTER SET utf8mb4  COMMENT '도시설명',
   `lat` float DEFAULT NULL COMMENT '위도',
   `lon` float DEFAULT NULL COMMENT '경도',
   `population` int DEFAULT NULL COMMENT '인구수',
   `sdate` datetime DEFAULT NULL COMMENT '도시설립일',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 
 
@@ -119,16 +119,16 @@ DROP TABLE IF EXISTS `gallery`;
 
 CREATE TABLE `gallery` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  `title` varchar(255) CHARACTER SET utf8mb4  NOT NULL DEFAULT '',
   `content` text,
-  `writer` varchar(255) CHARACTER SET utf8mb4 DEFAULT '',
+  `writer` varchar(255) CHARACTER SET utf8mb4  DEFAULT '',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `readnum` int unsigned NOT NULL DEFAULT '0',
   `uid` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `uid` (`uid`),
   CONSTRAINT `gallery_ibfk_1` FOREIGN KEY (`uid`) REFERENCES `auth` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 
 
@@ -140,13 +140,13 @@ DROP TABLE IF EXISTS `gallery_file`;
 CREATE TABLE `gallery_file` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
   `orifile` varchar(255) NOT NULL,
-  `savefile` varchar(255) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  `savefile` varchar(255) CHARACTER SET utf8mb4  NOT NULL DEFAULT '',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `fid` int unsigned NOT NULL,
   PRIMARY KEY (`id`),
   KEY `fid` (`fid`),
   CONSTRAINT `gallery_file_ibfk_1` FOREIGN KEY (`fid`) REFERENCES `gallery` (`id`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 
 
@@ -157,13 +157,13 @@ DROP TABLE IF EXISTS `gallery_ip`;
 
 CREATE TABLE `gallery_ip` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `ip` varchar(50) CHARACTER SET utf8mb4 NOT NULL DEFAULT '',
+  `ip` varchar(50) CHARACTER SET utf8mb4  NOT NULL DEFAULT '',
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `bid` int unsigned DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `bid` (`bid`),
   CONSTRAINT `gallery_ip_ibfk_2` FOREIGN KEY (`bid`) REFERENCES `gallery` (`id`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 
 
@@ -177,7 +177,7 @@ CREATE TABLE `sessions` (
   `expires` int unsigned NOT NULL,
   `data` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_bin,
   PRIMARY KEY (`session_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 ;
 
 
 
